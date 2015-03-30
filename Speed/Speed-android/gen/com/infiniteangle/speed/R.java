@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.infiniteangle.slidingblocks;
+package com.infiniteangle.speed;
 
 public final class R {
     public static final class attr {
