@@ -29,7 +29,7 @@ public class Credits  extends Screen{
 		FontParrameters font=new FontParrameters("score", x(0.015f), 1, 1, 1);
 		
 		final Label lblDeveloper=new Label("Programming: Liakis  Stefanos",x(50),y(80),x(0.015f),Text2.ALIGN_CENTER,font,this);
-		final Label lblMusic=new Label("Music: Kevin  Macleod",x(50),y(50),x(0.015f),Text2.ALIGN_CENTER,font,this);
+		final Label lblMusic=new Label("Music: Junkie XL",x(50),y(50),x(0.015f),Text2.ALIGN_CENTER,font,this);
 		
 		final Button btnBack=new Button(x(15),y(15),x(8),x(8),"ui/btnPrevious.png",this);
 		btnBack.setOnEventListener(new OnEventListener() {
