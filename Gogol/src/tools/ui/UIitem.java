@@ -18,6 +18,7 @@ public abstract class UIitem {
 	public boolean uiRendererRender=true;
 	public Screen screen;
 	public Vector realPos;
+	public UIRenderer uirenderer;
 	public UIitem(Screen screen) {
 		this.screen=screen;
 		pos = new Vector();

@@ -2,12 +2,12 @@
 <classpath>
 	<classpathentry excluding="com/awesomethings/simplegame/a/CopyOfAttackMechanism.java|com/awesomethings/simplegame/a/CopyOfUnarmedAttack.java|com/awesomethings/simplegame/game/attacks/Airkick.java|com/awesomethings/simplegame/game/attacks/Punch.java|com/awesomethings/simplegame/game/attacks/Knickkick.java" kind="src" path="src"/>
 	<classpathentry exported="true" kind="con" path="GROOVY_SUPPORT"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Gogol"/>
 	<classpathentry kind="lib" path="libs/gdx.jar" sourcepath="libs/gdx-sources.jar"/>
 	<classpathentry kind="lib" path="libs/gdx-controllers.jar"/>
 	<classpathentry kind="lib" path="libs/gdx-freetype.jar"/>
 	<classpathentry kind="lib" path="libs/gdx-audio-natives.jar"/>
 	<classpathentry kind="lib" path="libs/gdx-audio.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Gogol"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

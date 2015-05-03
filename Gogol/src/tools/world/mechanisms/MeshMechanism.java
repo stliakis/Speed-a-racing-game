@@ -4,11 +4,11 @@ import java.util.Comparator;
 
 import tools.Director;
 import tools.Shader;
+import tools.Shapes.Shape;
 import tools.general.Vector;
 import tools.general.gColor;
 import tools.world.Entity;
 import tools.world.WorldRenderer;
-import tools.world.mechanisms.Shapes.Shape;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
@@ -81,13 +81,15 @@ public class MeshMechanism extends WorldMechanism{
 		m.translate(pos.x,pos.y,pos.z);
 		m.scale(scale.x, scale.y,scale.z);
 		m.rotate(0, 1, 0, entity.rotation.y);
-
+		m.rotate(0, 0, 1, entity.rotation.z);
+		
 		currentShader.getShader().setUniformMatrix(uProj,m);
 		currentShader.getShader().setUniformf(vColor,color.r,color.g,color.b,color.a);
 		setShaderParams(currentShader.getShader());
 		
 		actualRender();
 		
+		m.rotate(0, 0, 1, -entity.rotation.z);
 		m.rotate(0, 1, 0,-entity.rotation.y);
 		if(scale.z==0)m.scale(1/scale.x, 1/scale.y,0.001f);
 		else m.scale(1/scale.x, 1/scale.y,1/scale.z);

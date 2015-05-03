@@ -2,6 +2,7 @@ package tools.ui;
 
 import tools.Director;
 import tools.Director.ActionListener;
+import tools.Text;
 import tools.Text2;
 import tools.Text2.FontParrameters;
 import tools.general.Tools;
@@ -11,6 +12,7 @@ import tools.general.gColor;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -72,7 +74,6 @@ public class Button extends UIitem {
 			sprite = new Sprite(this.texture);
 		}
 		else{
-			Tools.con("NOT ASSET:"+texture);
 			assetID=screen.addAsset(texture, Texture.class);
 		}
 
@@ -123,7 +124,7 @@ public class Button extends UIitem {
 					//touchingTheButton=false;
 					if(touch(Gdx.input.getX(),Gdx.input.getY()))if(onEventListener!=null)onEventListener.onEventEnd(Gdx.input, b);
 				}
-				if(id==Director.ACTION_KEY_DOWN){
+				if(id==Director.ACTION_KEY_UP){
 					if(onEventListener!=null && onEventListener.keys!=null){
 						for(int c=0;c<onEventListener.keys.length;c++){
 							if(Gdx.input.isKeyPressed(onEventListener.keys[c]) && lastPress>200){
@@ -176,8 +177,6 @@ public class Button extends UIitem {
 		//else scaleup+=((1-scaleup)/10)*Director.delta;
 		if(sprite==null || !visible)return;
 		
-
-		sprite.setTexture(texture);
 		sprite.setColor(color.r, color.g, color.b, color.a);
 		sprite.setRotation(angle);
 		sprite.setPosition(getPos().x - getSize().x * scaleup / 2, getPos().y
@@ -187,14 +186,16 @@ public class Button extends UIitem {
 				(getSize().y * scaleup) / 2);
 		sprite.draw(sb);
 		
+		Text.setColor(colortext.r, colortext.g, colortext.b, color.a);
 		if (text != null) {
 			if(fontPars==null){
-				Text2.drawText(sb, null,text, getPos(), textsize * scaleup,Text2.ALIGN_CENTER);
+				Text2.drawText(sb, null,text, getPos(), textsize * scaleup,Text.ALIGN_CENTER);
 			}else {
 				Text2.setColor(fontPars.getColor().r, fontPars.getColor().g, fontPars.getColor().b, color.a);
-				Text2.drawText(sb,fontPars, text, getPos(), fontPars.getSize() * scaleup,Text2.ALIGN_CENTER);
+				Text2.drawText(sb,fontPars, text, getPos(), fontPars.getSize() * scaleup,Text.ALIGN_CENTER);
 			}
 		}
+		Text.setColor(1, 1, 1, 1);
 		update(this);
 		
 		

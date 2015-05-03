@@ -37,7 +37,6 @@ public class SpriteMechanism extends WorldMechanism {
 			sprite = new Sprite(texture);
 		}
 		else{
-			Tools.con("NOT ASSET:"+textu);
 			assetID=entity.world.screen.addAsset(textu, Texture.class);
 			sprite=new Sprite();
 		}
@@ -268,6 +267,39 @@ public class SpriteMechanism extends WorldMechanism {
 		sprite.setRegion(col * tileSize, row * tileSize, tileSize, tileSize);
 		origin = new Vector(entity.getScale().x / 2, entity.getScale().y / 2);
 		isUsingShader = false;
+	}
+	public SpriteMechanism(Entity entity, String textu, int col, int row,
+			int tileSize, Vector pos, Vector scale, Vector rotation,
+			gColor color,String vertShader, String fragShader,
+			boolean createNew) {
+		super(entity);
+		// texture=new Texture(Gdx.files.internal(textu));
+		createSprite(textu);
+		this.color = color;
+		this.scale = scale;
+		this.rotation = rotation;
+		this.pos = pos;
+		sprite.setRegion(col * tileSize, row * tileSize, tileSize, tileSize);
+		origin = new Vector(entity.getScale().x / 2, entity.getScale().y / 2);
+		isUsingShader = false;
+		boolean containsShader = false;
+		if (!createNew) {
+			for (Shader shader : shaders) {
+				if (shader.compare(fragShader, vertShader)) {
+					this.shader = shader;
+					containsShader = true;
+				}
+			}
+			if (!containsShader) {
+				shader = new Shader(vertShader, fragShader);
+				shaders.add(shader);
+			}
+		} else {
+			shader = new Shader(vertShader, fragShader);
+			shaders.add(shader);
+		}
+
+		isUsingShader = true;
 	}
 	
 	public SpriteMechanism(Entity entity, String textu, int col, int row,

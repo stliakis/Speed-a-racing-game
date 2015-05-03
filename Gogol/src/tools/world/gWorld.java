@@ -1,9 +1,7 @@
 package tools.world;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import tools.Action;
@@ -180,6 +178,7 @@ public class gWorld {
 	}
 
 	public Entity getEntity(int id) {
+		if(id==-1)return null;
 		return allEntities.get(id);
 	}
 	public void killAll(int mode) {
@@ -297,14 +296,15 @@ public class gWorld {
 		if (getRoot() == null) {
 			return;
 		}
-
+		
 		worldrenderer.getCamera().position.set(-cameraPos.x, -cameraPos.y,-cameraPos.z);
 		worldrenderer.getCamera().rotate(cameraRot.z, 0, 0, 1);
 		worldrenderer.getCamera().rotate(cameraRot.x, 1, 0, 0);
 		worldrenderer.getCamera().rotate(cameraRot.y, 0, 1, 0);
-		worldrenderer.getCamera().update(false);
 
 		worldrenderer.RenderStart();
+		
+		worldrenderer.getCamera().update(false);
 		
 		if(LAYERED_RENDERING){
 			renderingLayer=0;
@@ -467,13 +467,16 @@ public class gWorld {
 	}
 
 	public void setRootEntity(Entity rootEntity) {
-		Tools.con("setting root:"+rootEntity.getClass());
 		if(this.rootEntity!=null){
 			this.rootEntity.killAllTree();
 		}
 		this.rootEntity = rootEntity;
 	}
 
+	public void setRootEntityWithoutKilling(Entity rootEntity) {
+		this.rootEntity = rootEntity;
+	}
+	
 	public void setWorldID(byte worldID) {
 		this.worldID = worldID;
 	}

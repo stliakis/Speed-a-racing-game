@@ -6,9 +6,7 @@ import java.util.Map;
 import tools.Director;
 import tools.RenderOnTexture;
 import tools.Shader;
-import tools.Shader.ShaderParrametersListener;
 import tools.SpriteBatch;
-import tools.general.Tools;
 import tools.general.Vector;
 import tools.general.gColor;
 
@@ -19,7 +17,6 @@ import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector3;
 
 public class WorldRenderer {

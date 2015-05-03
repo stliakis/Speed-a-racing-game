@@ -191,7 +191,6 @@ public abstract class Director implements ApplicationListener, InputProcessor {
 	public static <T> void loadAsset(String file, Class<T> type) {
 		//globalAssets.add(file);
 		assets.load(file, type);
-		Tools.con("loading:"+file);
 	}
 	public static <T> void loadAsset(Class<T> type,String... file) {
 		for(String fil:file){

@@ -49,11 +49,21 @@ public class Entity {
 
 	public gWorld world;
 	public boolean renderAfterKids=false;
+
+	
+	public void removeMechanism(Class clazz){
+		for (int c = 0; c < mechanisms.size(); c++) {
+			if (clazz.isInstance(mechanisms.get(c))) {
+				mechanisms.remove(c);
+			}
+		}
+	}
+	
 	public Entity(gWorld world) {
 		this.world = world;
 		setId(world.getNextFreeId());
 		
-		Tools.con("id:"+id+"  class:"+getClass());
+		//Tools.con("id:"+id+"  class:"+getClass());
 		
 		world.getAllEntities().add(id, this);
 		empty = true;

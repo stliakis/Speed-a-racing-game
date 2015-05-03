@@ -3,6 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="assets"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Speed"/>
 	<classpathentry exported="true" kind="lib" path="libs/gdx-backend-lwjgl-natives.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/gdx-backend-lwjgl.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/gdx-freetype-natives.jar"/>
@@ -12,6 +13,6 @@
 	<classpathentry exported="true" kind="lib" path="libs/gdx-controllers-desktop-natives.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/gdx-controllers-desktop.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/gdx-controllers.jar"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Speed"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Gogol"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -21,6 +21,7 @@ public class ProgressBar extends UIitem {
 		super(screen);
 		pos = new Vector(x, y);
 		size = new Vector(sizex, sizey);
+		realPos=new Vector(x,y);
 		if(texture!=null){
 			this.texture = Director.getAsset(texture, Texture.class);
 			sprite = new Sprite(this.texture);
@@ -46,6 +47,7 @@ public class ProgressBar extends UIitem {
 		size = new Vector(sizex, sizey);
 		this.texture =texture;
 		sprite = new Sprite(this.texture);
+		realPos=new Vector(x,y);
 		
 		Texture texturea = background;
 		sprite2 = new Sprite(texturea);

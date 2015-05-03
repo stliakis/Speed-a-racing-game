@@ -27,7 +27,6 @@ public class ScreenShader {
 				Director.spriteBatch.setProjectionMatrix(camera.combined);
 				Director.spriteBatch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 				Director.spriteBatch.enableBlending();
-	
 				Director.spriteBatch.begin();
 				Director.spriteBatch.setShader(shader.getShader());
 				if(shader.getListener()!=null)shader.getListener().setParameters(shader);
@@ -40,7 +39,7 @@ public class ScreenShader {
 				Director.spriteBatch.draw(region,-size.x*2+effectCameraPos.x, -size.y*2+effectCameraPos.y, size.x*4,size.y*4);
 				Director.spriteBatch.end();
 				if(shader!=null)Director.spriteBatch.setShader(Director.defaultShader);
-		}else System.out.println("asd");
+		}
 	}
 	
 }

@@ -1,7 +1,9 @@
 package tools.ui;
 
+import tools.Text;
 import tools.Text2;
 import tools.Text2.FontParrameters;
+import tools.general.Tools;
 import tools.general.Vector;
 import tools.general.gColor;
 
@@ -44,7 +46,8 @@ public class Label extends UIitem {
 
 		
 		if(fontPars==null){
-			
+			Text.setColor(color.r, color.g, color.b, color.a);
+			Text.drawText(sb, label, pos, size.x, align);
 		}else {
 			float ca=fontPars.getColor().a;
 			fontPars.getColor().a=color.a;

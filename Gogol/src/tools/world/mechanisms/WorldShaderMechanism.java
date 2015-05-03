@@ -14,6 +14,7 @@ public abstract class WorldShaderMechanism extends WorldMechanism{
 		
 		shader.setListener(new ShaderParrametersListener() {
 			public void setParameters(Shader shader) {
+			
 				setShaderParameters(shader);
 			}
 		});

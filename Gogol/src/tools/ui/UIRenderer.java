@@ -5,6 +5,8 @@ import java.util.List;
 
 import tools.Director;
 import tools.ListenerManager;
+import tools.Text;
+import tools.Text2;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Camera;
@@ -27,13 +29,14 @@ public class UIRenderer {
 		batch = Director.spriteBatch;
 		items = new ArrayList<UIitem>();
 		numbersToDraw=new ArrayList<NumberDrawRequest>();
-		for(int c=0;c<10;c++){
+		for(int c=0;c<150;c++){
 			numbersToDraw.add(new NumberDrawRequest());
 		}
 	}
 	
 	public void addItem(UIitem... itemslist) {
 		for (UIitem item : itemslist) {
+			item.uirenderer=this;
 			items.add(item);
 		}
 	}
@@ -67,14 +70,19 @@ public class UIRenderer {
 			if(usePreSetAlpha)item.color.a=alpha;
 		}
 
-	//	for(int c=0;c<numDrawRequests;c++){
-	//		NumberDrawRequest req=numbersToDraw.get(c);
-		//	Text2.drawNumber(req.num, getSpriteBatch() ,req.x,req.y,req.size, req.r, req.g, req.b, req.a);
-	//	}
+		for(int c=0;c<numDrawRequests;c++){
+			NumberDrawRequest req=numbersToDraw.get(c);
+			Text2.setColor( req.r, req.g, req.b, req.a);
+			Text2.drawNumber(req.num, getSpriteBatch(),req.x,req.y,req.size);
+		}
 		
-		if(!renderListenerBefore){
+		if(!renderListenerBefore ){
 			for(OnRenderListener of=listeners.begin(OnRenderListener.class);of!=null;of=listeners.next()){
 				of.OnRender(batch);
+			}
+		}else{
+			for(OnRenderListener of=listeners.begin(OnRenderListener.class);of!=null;of=listeners.next()){
+				if(of.afterMain)of.OnRender(batch);
 			}
 		}
 		
@@ -84,7 +92,7 @@ public class UIRenderer {
 	}
 	int numDrawRequests=0;
 	public void drawNumber(long num,float x,float y,float size,float r,float g,float b,float a){
-		if(numDrawRequests<10){
+		if(numDrawRequests<150){
 			numbersToDraw.get(numDrawRequests).size=size;
 			numbersToDraw.get(numDrawRequests).num=num;
 			numbersToDraw.get(numDrawRequests).x=x;
@@ -97,7 +105,7 @@ public class UIRenderer {
 		}
 	}
 	public void drawNumber(long num,float x,float y,float size,float r,float g,float b,float a,int align){
-		if(numDrawRequests<10){
+		if(numDrawRequests<150){
 			numbersToDraw.get(numDrawRequests).size=size;
 			numbersToDraw.get(numDrawRequests).num=num;
 			numbersToDraw.get(numDrawRequests).align=align;
@@ -110,31 +118,7 @@ public class UIRenderer {
 			numDrawRequests++;
 		}
 	}
-	public void Render(Camera camera, float xof, float scale) {
-		if(!visible)return;
-		batch.setProjectionMatrix(camera.combined);
-		batch.begin();
 
-		for(OnRenderListener of=listeners.begin(OnRenderListener.class);of!=null;of=listeners.next()){
-			of.OnRender(batch);
-		}
-		
-		for (int i = 0; i < items.size(); ++i) {
-			UIitem item = items.get(i);
-			item.Update();
-			if (!item.stady)
-				item.pos.x += xof;
-			if (!item.stady)
-				item.scaleup *= scale;
-			item.Render(batch);
-			if (!item.stady)
-				item.scaleup /= scale;
-			if (!item.stady)
-				item.pos.x -= xof;
-		}
-
-		batch.end();
-	}
 	public boolean visible=true;
 	public void leaving(){
 		visible=false;
@@ -233,6 +217,7 @@ public class UIRenderer {
 		listeners.add(onRenderListener);
 	}
 	public static abstract class OnRenderListener{
+		public boolean afterMain=false;
 		public abstract void OnRender(SpriteBatch sb);
 	}
 	public static abstract class OnFocus{

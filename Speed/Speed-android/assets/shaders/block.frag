@@ -6,7 +6,7 @@ void main()
 {
    float perspective_far = 250.0;
    float fog_cord = (gl_FragCoord.z / gl_FragCoord.w) / perspective_far;
-   float fog_density = 12.0;
+   float fog_density = 10.0;
    float fog = fog_cord * fog_density;
    vec4 frag_color = v_color;
    gl_FragColor = mix(fog_color, frag_color, clamp(1.0-fog,0.0, 1.0));
